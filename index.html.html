@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpHub Aurora | 24/7 Private Crisis &amp; Emotional Sanctuary</title>
+    <style>
+        /* Design System Tokens - Botanical Emerald & Warm Ivory */
+        :root {
+            --bg-page: #f2f7f5;
+            --bg-mesh-1: rgba(13, 148, 136, 0.10);
+            --bg-mesh-2: rgba(217, 119, 6, 0.08);
+            --bg-card: rgba(255, 255, 255, 0.88);
+            --bg-card-solid: #ffffff;
+            --bg-subtle: #eaf3f0;
+            --bg-pill: #e0eeea;
+            --bg-input: #ffffff;
+            --text-main: #132a25;
+            --text-strong: #091c18;
+            --text-muted: #425e57;
+            --border-subtle: rgba(19, 42, 37, 0.10);
+            --border-strong: rgba(13, 148, 136, 0.32);
+            --accent: #0f766e;
+            --accent-bright: #14b8a6;
+            --accent-hover: #115e59;
+            --warm-accent: #d97706;
+            --danger: #dc2626;
+            --danger-hover: #b91c1c;
+            --shadow-card: 0 12px 32px -8px rgba(9, 28, 24, 0.08);
+            --shadow-hover: 0 18px 40px -10px rgba(15, 118, 110, 0.16);
+        }
+
+        /* Dark Mode Tokens - Deep Forest Obsidian & Bioluminescent Teal */
+        [data-theme="dark"] {
+            --bg-page: #081412;
+            --bg-mesh-1: rgba(20, 184, 166, 0.14);
+            --bg-mesh-2: rgba(245, 158, 11, 0.09);
+            --bg-card: rgba(15, 34, 30, 0.84);
+            --bg-card-solid: #0f221e;
+            --bg-subtle: #152e29;
+            --bg-pill: #1a3832;
+            --bg-input: #112722;
+            --text-main: #e6f4f1;
+            --text-strong: #ffffff;
+            --text-muted: #9ec2ba;
+            --border-subtle: rgba(230, 244, 241, 0.10);
+            --border-strong: rgba(45, 212, 191, 0.35);
+            --accent: #14b8a6;
+            --accent-bright: #2dd4bf;
+            --accent-hover: #0d9488;
+            --warm-accent: #f59e0b;
+            --shadow-card: 0 14px 36px -8px rgba(0, 0, 0, 0.45);
+            --shadow-hover: 0 20px 44px -10px rgba(20, 184, 166, 0.22);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-page);
+            background-image:
+                radial-gradient(circle at 12% 18%, var(--bg-mesh-1), transparent 42%),
+                radial-gradient(circle at 88% 35%, var(--bg-mesh-2), transparent 45%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Top Sticky Command & Safety Bar */
+        .safety-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 22, 19, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .safety-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .safety-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            color: #ffffff;
+            background-color: #0f766e;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.15s ease, background-color 0.2s ease;
+        }
+
+        .safety-pill:hover {
+            background-color: #14b8a6;
+            transform: translateY(-1px);
+        }
+
+        .safety-pill.urgent-911 {
+            background-color: #1e3a34;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #5eead4;
+            box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.7); }
+            70% { box-shadow: 0 0 0 7px rgba(94, 234, 212, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(94, 234, 212, 0); }
+        }
+
+        .theme-btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .exit-btn {
+            background-color: var(--danger);
+            color: #ffffff;
+            border: none;
+            border-radius: 999px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+            transition: background-color 0.2s ease, transform 0.15s ease;
+        }
+
+        .exit-btn:hover {
+            background-color: var(--danger-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Editorial Panoramic Hero */
+        .hero {
+            position: relative;
+            background:
+                linear-gradient(135deg, rgba(7, 25, 21, 0.86) 0%, rgba(15, 58, 50, 0.76) 55%, rgba(12, 34, 30, 0.88) 100%),
+                url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #ffffff;
+            padding: 58px 20px 68px 20px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(20, 184, 166, 0.2);
+            border: 1px solid rgba(94, 234, 212, 0.4);
+            color: #ccfbf1;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            margin: 0 auto 12px auto;
+            max-width: 720px;
+            font-size: clamp(32px, 5vw, 46px);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+        }
+
+        .hero p {
+            margin: 0 auto;
+            max-width: 620px;
+            font-size: 17px;
+            color: #d1fae5;
+        }
+
+        .hero .sub-reassurance {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #99f6e4;
+        }
+
+        /* Main Layout Container */
+        .container {
+            max-width: 1120px;
+            margin: -34px auto 40px auto;
+            padding: 0 18px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Search & Instant Filter Console */
+        .control-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-strong);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 24px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .search-input-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 13px 16px 13px 42px;
+            border-radius: 12px;
+            border: 1px solid var(--border-strong);
+            background-color: var(--bg-input);
+            color: var(--text-strong);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-bright);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            opacity: 0.65;
+            pointer-events: none;
+        }
+
+        .clear-search-btn {
+            background: var(--bg-pill);
+            color: var(--text-main);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 0 16px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            min-height: 44px;
+        }
+
+        .clear-search-btn:hover {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-pill {
+            background: var(--bg-pill);
+            color: var(--text-main);
+            border: 1px solid transparent;
+            border-radius: 999px;
+            padding: 7px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-pill:hover {
+            border-color: var(--accent);
+        }
+
+        .filter-pill.active {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+        }
+
+        /* 3-Card Interactive Sanctuary & Visual Strip */
+        .sanctuary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .sanctuary-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sanctuary-card img {
+            width: 100%;
+            height: 155px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .sanctuary-body {
+            padding: 18px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .sanctuary-body h3 {
+            margin: 0 0 6px 0;
+            font-size: 18px;
+            color: var(--text-strong);
+        }
+
+        .sanctuary-body p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Interactive 4-7-8 Breathing Pacer */
+        .pacer-box {
+            text-align: center;
+            align-items: center;
+        }
+
+        .pacer-ring {
+            width: 84px;
+            height: 84px;
+            margin: 14px auto 10px auto;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #5eead4, #0f766e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 13px;
+            box-shadow: 0 0 24px rgba(20, 184, 166, 0.35);
+            transition: transform 4s ease-in-out, box-shadow 4s ease-in-out;
+        }
+
+        .pacer-ring.inhale {
+            transform: scale(1.32);
+            box-shadow: 0 0 36px rgba(94, 234, 212, 0.65);
+        }
+
+        .pacer-ring.hold {
+            transform: scale(1.32);
+            background: radial-gradient(circle at 30% 30%, #fcd34d, #d97706);
+            box-shadow: 0 0 36px rgba(245, 158, 11, 0.55);
+        }
+
+        .pacer-ring.exhale {
+            transform: scale(0.95);
+            transition: transform 8s ease-in-out, box-shadow 8s ease-in-out;
+        }
+
+        .pacer-btn {
+            margin-top: 8px;
+            background: var(--bg-pill);
+            color: var(--text-strong);
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .pacer-btn:hover {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        /* Masonry-Style Responsive Resource Grid */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 520px) {
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--border-strong);
+        }
+
+        .section-card.hidden {
+            display: none;
+        }
+
+        .section-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+        }
+
+        .section-top h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-strong);
+        }
+
+        .tag-badge {
+            background: var(--bg-pill);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+
+        /* Individual Helpline Items */
+        .resource-item {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .resource-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .resource-item.hidden {
+            display: none;
+        }
+
+        .resource-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .resource-item strong {
+            font-size: 16px;
+            color: var(--text-strong);
+        }
+
+        .resource-item p {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background-color: var(--accent);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background-color: var(--bg-subtle);
+            color: var(--text-main);
+            border: 1px solid var(--border-subtle);
+            text-decoration: none;
+            padding: 7px 13px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background-color: var(--bg-pill);
+        }
+
+        .copy-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px dashed var(--border-strong);
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            color: var(--text-strong);
+            border-style: solid;
+            border-color: var(--accent);
+        }
+
+        .copy-btn.copied {
+            background-color: var(--accent);
+            color: #ffffff;
+            border-style: solid;
+        }
+
+        /* Empty Search State */
+        .no-results {
+            display: none;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 36px 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Full-Width Bottom Sections */
+        .full-span {
+            margin-top: 22px;
+        }
+
+        details {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+        }
+
+        summary {
+            font-weight: 700;
+            color: var(--text-strong);
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        details p {
+            margin: 10px 0 0 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px 16px 48px 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- Sticky Safety, Theme & History-Replacing Quick Exit Bar -->
+    <nav class="safety-bar" aria-label="Emergency Quick Actions">
+        <div class="safety-group">
+            <a href="tel:911" class="safety-pill urgent-911">Call 911</a>
+            <a href="tel:988" class="safety-pill"><span class="pulse-dot"></span> Call 988</a>
+            <a href="sms:741741" class="safety-pill">Text 741741</a>
+        </div>
+        <div class="safety-group">
+            <button type="button" class="theme-btn" id="themeToggle" aria-label="Switch color theme">🌙 Dark Mode</button>
+            <button type="button" class="exit-btn" id="quickExitBtn" title="Immediately leaves this page and replaces browser history">Quick Exit ✕</button>
+        </div>
+    </nav>
+
+    <!-- Panoramic Atmospheric Hero -->
+    <header class="hero">
+        <div class="hero-badge"><span class="pulse-dot"></span> 100% Free &bull; Confidential &bull; 24/7</div>
+        <h1>HelpHub Aurora Sanctuary</h1>
+        <p>Immediate, judgment-free crisis support, peer warm lines, and recovery directories — you never have to carry this alone.</p>
+        <p class="sub-reassurance">No insurance, real name, or explanation needed. Press <strong>Esc</strong> twice anytime for instant Quick Exit.</p>
+    </header>
+
+    <main class="container">
+
+        <!-- Live Search & Category Filter Console -->
+        <section class="control-panel" aria-label="Search and filter helplines">
+            <div class="search-row">
+                <div class="search-input-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="search" id="searchInput" class="search-input" placeholder="Search by topic, text line, or keyword (e.g., text, veterans, dating, eating, LGBTQ)..." aria-label="Search helplines">
+                </div>
+                <button type="button" id="clearSearchBtn" class="clear-search-btn">Reset Filters</button>
+            </div>
+            <div class="filter-pills" role="tablist">
+                <button type="button" class="filter-pill active" data-filter="all">All Support (11)</button>
+                <button type="button" class="filter-pill" data-filter="mental-health">Mental Health</button>
+                <button type="button" class="filter-pill" data-filter="relationships">Relationships</button>
+                <button type="button" class="filter-pill" data-filter="domestic-violence">Domestic Violence</button>
+                <button type="button" class="filter-pill" data-filter="lgbtq">LGBTQ+</button>
+                <button type="button" class="filter-pill" data-filter="youth">Youth &amp; Family</button>
+                <button type="button" class="filter-pill" data-filter="substance">Substance Use</button>
+                <button type="button" class="filter-pill" data-filter="sexual-assault">Sexual Assault</button>
+                <button type="button" class="filter-pill" data-filter="eating">Eating Disorders</button>
+                <button type="button" class="filter-pill" data-filter="bullying">Bullying</button>
+                <button type="button" class="filter-pill" data-filter="veterans">Veterans</button>
+                <button type="button" class="filter-pill" data-filter="therapy">Find a Therapist</button>
+            </div>
+        </section>
+
+        <!-- Visual Grounding & 4-7-8 Interactive Sanctuary Strip -->
+        <section class="sanctuary-grid" aria-label="Calming and grounding tools">
+            <article class="sanctuary-card">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Misty green valley at sunrise">
+                <div class="sanctuary-body">
+                    <h3>5-4-3-2-1 Grounding Anchor</h3>
+                    <p>Look around your space and silently name <strong>5</strong> things you see, <strong>4</strong> you can touch, <strong>3</strong> you hear, <strong>2</strong> you smell, and <strong>1</strong> you taste.</p>
+                </div>
+            </article>
+
+            <article class="sanctuary-card">
+                <div class="sanctuary-body pacer-box">
+                    <h3>4-7-8 Calming Breath Pacer</h3>
+                    <div class="pacer-ring" id="pacerRing">Ready</div>
+                    <p id="pacerInstruction">Tap below to start a gentle 4s inhale, 7s hold, 8s exhale cycle.</p>
+                    <button type="button" class="pacer-btn" id="pacerToggleBtn">Start Breathing Guide</button>
+                </div>
+            </article>
+
+            <article class="sanctuary-card">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Still mountain lake reflecting calm skies">
+                <div class="sanctuary-body">
+                    <h3>Silent Text &amp; Chat Available</h3>
+                    <p>If speaking out loud feels unsafe or exhausting, use any <strong>Text</strong> or <strong>Chat</strong> button below to message a trained counselor quietly.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Empty Search Fallback -->
+        <div class="no-results" id="noResultsBox">
+            <h3>No matching helplines found</h3>
+            <p>Try clearing your search or tap <strong>Reset Filters</strong> to view all 24/7 crisis and peer support lines.</p>
+        </div>
+
+        <!-- Main Filterable Resource Grid -->
+        <div class="resource-grid" id="resourceGrid">
+
+            <!-- 1. Mental Health -->
+            <section class="section-card" data-category="mental-health">
+                <div class="section-top">
+                    <h2>Mental Health &amp; Crisis Support</h2>
+                    <span class="tag-badge">24/7 Free</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>988 Suicide &amp; Crisis Lifeline</strong>
+                        <button type="button" class="copy-btn" data-copy="988">Copy 988</button>
+                    </div>
+                    <p>Free, confidential 24/7 support by phone or text for anyone in emotional distress or suicidal crisis (English &amp; Spanish).</p>
+                    <div class="btn-row">
+                        <a href="tel:988" class="btn-primary">Call 988</a>
+                        <a href="sms:988" class="btn-primary">Text 988</a>
+                        <a href="https://988lifeline.org" target="_blank" rel="noopener" class="btn-secondary">Chat Online</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Crisis Text Line</strong>
+                        <button type="button" class="copy-btn" data-copy="741741">Copy 741741</button>
+                    </div>
+                    <p>24/7 free, confidential text support with a trained crisis counselor.</p>
+                    <div class="btn-row">
+                        <a href="sms:741741" class="btn-primary">Text HOME to 741741</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>NAMI HelpLine</strong>
+                        <button type="button" class="copy-btn" data-copy="1-800-950-6264">Copy Number</button>
+                    </div>
+                    <p>Free peer-support service providing information and referrals (Mon–Fri, 10am–10pm ET).</p>
+                    <div class="btn-row">
+                        <a href="tel:1-800-950-6264" class="btn-primary">Call 800-950-6264</a>
+                        <a href="sms:62640" class="btn-primary">Text HelpLine to 62640</a>
+                        <a href="https://www.nami.org/help" target="_blank" rel="noopener" class="btn-secondary">Visit NAMI</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>SAMHSA Disaster Distress Helpline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-800-985-5990">Copy Number</button>
+                    </div>
+                    <p>24/7 crisis counseling for distress related to natural or human-caused disasters.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-800-985-5990" class="btn-primary">Call 800-985-5990</a>
+                        <a href="sms:1-800-985-5990" class="btn-primary">Text TalkWithUs</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>National Maternal Mental Health Hotline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-833-852-6262">Copy Number</button>
+                    </div>
+                    <p>Free, confidential 24/7 support for pregnant and new moms and their families.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-833-852-6262" class="btn-primary">Call or Text 833-852-6262</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>211 Local Peer &amp; Community Support</strong>
+                        <button type="button" class="copy-btn" data-copy="211">Copy 211</button>
+                    </div>
+                    <p>Connect with free local peer warmlines, counseling, and community mental health services.</p>
+                    <div class="btn-row">
+                        <a href="tel:211" class="btn-primary">Call 211</a>
+                        <a href="https://www.211.org/" target="_blank" rel="noopener" class="btn-secondary">Find Local Support</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Relationship & Dating Support -->
+            <section class="section-card" data-category="relationships">
+                <div class="section-top">
+                    <h2>Relationship &amp; Dating Support</h2>
+                    <span class="tag-badge">Confidential</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Love is Respect (24/7 Relationship Helpline)</strong>
+                        <button type="button" class="copy-btn" data-copy="1-866-331-9474">Copy Number</button>
+                    </div>
+                    <p>Free, confidential support by call, text, or chat for relationship conflict, boundaries, or unhealthy dating dynamics.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-866-331-9474" class="btn-primary">Call 866-331-9474</a>
+                        <a href="sms:22522" class="btn-primary">Text LOVEIS to 22522</a>
+                        <a href="https://www.loveisrespect.org" target="_blank" rel="noopener" class="btn-secondary">Live Chat &amp; Quizzes</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>One Love Foundation (Relationship Guides)</strong>
+                    </div>
+                    <p>Practical guides and warning signs to help you navigate communication issues, boundaries, and breakups.</p>
+                    <div class="btn-row">
+                        <a href="https://www.joinonelove.org/learn/" target="_blank" rel="noopener" class="btn-secondary">Explore Guides</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Crisis Text Line (Heartbreak &amp; Isolation)</strong>
+                        <button type="button" class="copy-btn" data-copy="741741">Copy 741741</button>
+                    </div>
+                    <p>24/7 confidential text support if a breakup, conflict, or loneliness feels overwhelming.</p>
+                    <div class="btn-row">
+                        <a href="sms:741741" class="btn-primary">Text HOME to 741741</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Domestic Violence -->
+            <section class="section-card" data-category="domestic-violence">
+                <div class="section-top">
+                    <h2>Domestic Violence Support</h2>
+                    <span class="tag-badge">200+ Languages</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>National Domestic Violence Hotline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-800-799-7233">Copy Number</button>
+                    </div>
+                    <p>24/7 confidential support, safety planning, and local shelter referrals.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-800-799-7233" class="btn-primary">Call 800-799-7233</a>
+                        <a href="sms:88788" class="btn-primary">Text START to 88788</a>
+                        <a href="https://www.thehotline.org" target="_blank" rel="noopener" class="btn-secondary">Visit Website</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>StrongHearts Native Helpline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-844-762-8483">Copy Number</button>
+                    </div>
+                    <p>24/7 culturally-appropriate domestic and sexual violence helpline for Native Americans and Alaska Natives.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-844-762-8483" class="btn-primary">Call or Text 844-762-8483</a>
+                        <a href="https://strongheartshelpline.org" target="_blank" rel="noopener" class="btn-secondary">Chat Online</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. LGBTQ+ Support -->
+            <section class="section-card" data-category="lgbtq">
+                <div class="section-top">
+                    <h2>LGBTQ+ Community Support</h2>
+                    <span class="tag-badge">Peer &amp; Crisis</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>The Trevor Project</strong>
+                        <button type="button" class="copy-btn" data-copy="1-866-488-7386">Copy Number</button>
+                    </div>
+                    <p>24/7 crisis intervention and suicide prevention for LGBTQ+ young people under 25.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-866-488-7386" class="btn-primary">Call 866-488-7386</a>
+                        <a href="sms:678678" class="btn-primary">Text START to 678-678</a>
+                        <a href="https://www.thetrevorproject.org/get-help/" target="_blank" rel="noopener" class="btn-secondary">TrevorChat</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Trans Lifeline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-877-565-8860">Copy Number</button>
+                    </div>
+                    <p>Peer support hotline run by and for trans people — no non-consensual active rescue.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-877-565-8860" class="btn-primary">Call 877-565-8860</a>
+                        <a href="https://translifeline.org" target="_blank" rel="noopener" class="btn-secondary">Visit Website</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>LGBT National Help Center</strong>
+                        <button type="button" class="copy-btn" data-copy="1-888-843-4564">Copy Number</button>
+                    </div>
+                    <p>Confidential peer-support hotlines and online chat for youth, adults, and seniors.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-888-843-4564" class="btn-primary">Call 888-843-4564</a>
+                        <a href="tel:1-800-246-7743" class="btn-primary">Youth Talkline</a>
+                        <a href="https://lgbthotline.org" target="_blank" rel="noopener" class="btn-secondary">Peer Chat</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Youth & Family -->
+            <section class="section-card" data-category="youth">
+                <div class="section-top">
+                    <h2>Youth, Child &amp; Family Safety</h2>
+                    <span class="tag-badge">24/7 Support</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Childhelp National Child Abuse Hotline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-800-422-4453">Copy Number</button>
+                    </div>
+                    <p>24/7 confidential crisis intervention, information, and referrals in 170+ languages.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-800-422-4453" class="btn-primary">Call or Text 800-422-4453</a>
+                        <a href="https://www.childhelphotline.org" target="_blank" rel="noopener" class="btn-secondary">Live Chat</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>National Runaway Safeline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-800-786-2929">Copy Number</button>
+                    </div>
+                    <p>24/7 confidential support, shelter connections, and free bus rides home for youth in crisis.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-800-786-2929" class="btn-primary">Call 800-RUNAWAY</a>
+                        <a href="sms:66008" class="btn-primary">Text 66008</a>
+                        <a href="https://www.1800runaway.org" target="_blank" rel="noopener" class="btn-secondary">Visit Website</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Boys Town National Hotline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-800-448-3000">Copy Number</button>
+                    </div>
+                    <p>24/7 crisis, resource, and referral line for teens, parents, and families.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-800-448-3000" class="btn-primary">Call 800-448-3000</a>
+                        <a href="sms:20121" class="btn-primary">Text VOICE to 20121</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Substance Use -->
+            <section class="section-card" data-category="substance">
+                <div class="section-top">
+                    <h2>Substance Use &amp; Recovery</h2>
+                    <span class="tag-badge">Treatment &amp; Peers</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>SAMHSA National Helpline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-800-662-4357">Copy Number</button>
+                    </div>
+                    <p>Free, confidential 24/7 treatment referral and information service for individuals and families.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-800-662-4357" class="btn-primary">Call 800-662-4357</a>
+                        <a href="https://findtreatment.gov" target="_blank" rel="noopener" class="btn-secondary">Find Treatment</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Poison Control (24/7 Emergency)</strong>
+                        <button type="button" class="copy-btn" data-copy="1-800-222-1222">Copy Number</button>
+                    </div>
+                    <p>Free, confidential expert medical help for accidental poisoning, overdose, or medication questions.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-800-222-1222" class="btn-primary">Call 800-222-1222</a>
+                        <a href="https://www.poison.org" target="_blank" rel="noopener" class="btn-secondary">Online Tool</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>AA, NA &amp; Al-Anon Recovery Meetings</strong>
+                    </div>
+                    <p>Find free local and online peer recovery meetings for individuals and loved ones.</p>
+                    <div class="btn-row">
+                        <a href="https://www.aa.org/find-aa" target="_blank" rel="noopener" class="btn-secondary">AA Meetings</a>
+                        <a href="https://www.na.org/meetingsearch/" target="_blank" rel="noopener" class="btn-secondary">NA Meetings</a>
+                        <a href="https://al-anon.org/al-anon-meetings/" target="_blank" rel="noopener" class="btn-secondary">Al-Anon</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Sexual Assault -->
+            <section class="section-card" data-category="sexual-assault">
+                <div class="section-top">
+                    <h2>Sexual Assault Support</h2>
+                    <span class="tag-badge">24/7 Confidential</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>RAINN National Sexual Assault Hotline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-800-656-4673">Copy Number</button>
+                    </div>
+                    <p>Free, confidential 24/7 support from trained staff members and local service providers.</p>
+                    <div class="btn-row">
+                        <a href="tel:1-800-656-4673" class="btn-primary">Call 800-656-4673</a>
+                        <a href="https://online.rainn.org" target="_blank" rel="noopener" class="btn-secondary">Online Chat</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>1in6 Support for Men</strong>
+                    </div>
+                    <p>Free, confidential 24/7 online helpline and peer support groups for men who have experienced unwanted or abusive sexual experiences.</p>
+                    <div class="btn-row">
+                        <a href="https://1in6.org/helpline/" target="_blank" rel="noopener" class="btn-secondary">Visit 1in6 Helpline</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Eating Disorders -->
+            <section class="section-card" data-category="eating">
+                <div class="section-top">
+                    <h2>Eating Disorder Support</h2>
+                    <span class="tag-badge">Recovery Care</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>National Alliance for Eating Disorders</strong>
+                        <button type="button" class="copy-btn" data-copy="1-866-662-1235">Copy Number</button>
+                    </div>
+                    <p>Free, confidential support and referrals from licensed therapists (Mon–Fri, 9am–7pm ET).</p>
+                    <div class="btn-row">
+                        <a href="tel:1-866-662-1235" class="btn-primary">Call 866-662-1235</a>
+                        <a href="https://www.allianceforeatingdisorders.com" target="_blank" rel="noopener" class="btn-secondary">Visit Website</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>ANAD Eating Disorders Helpline</strong>
+                        <button type="button" class="copy-btn" data-copy="1-888-375-7767">Copy Number</button>
+                    </div>
+                    <p>Free peer support and recovery mentorship (Mon–Fri, 9am–9pm CT).</p>
+                    <div class="btn-row">
+                        <a href="tel:1-888-375-7767" class="btn-primary">Call 888-375-7767</a>
+                        <a href="https://anad.org/get-help/" target="_blank" rel="noopener" class="btn-secondary">Support Groups</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Project HEAL</strong>
+                    </div>
+                    <p>Treatment access support, insurance navigation, and cash assistance for eating disorder recovery.</p>
+                    <div class="btn-row">
+                        <a href="https://www.theprojectheal.org" target="_blank" rel="noopener" class="btn-secondary">Visit Project HEAL</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Bullying -->
+            <section class="section-card" data-category="bullying">
+                <div class="section-top">
+                    <h2>Bullying &amp; Cyberbullying</h2>
+                    <span class="tag-badge">Youth &amp; Online</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>National Safe Place (TXT 4 HELP)</strong>
+                        <button type="button" class="copy-btn" data-copy="44357">Copy 44357</button>
+                    </div>
+                    <p>Free, confidential 24/7 text support specifically for youth facing bullying or unsafe situations.</p>
+                    <div class="btn-row">
+                        <a href="sms:44357" class="btn-primary">Text 4HELP to 44357</a>
+                        <a href="https://www.stopbullying.gov/resources/get-help-now" target="_blank" rel="noopener" class="btn-secondary">StopBullying.gov</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Cyberbullying Research Center</strong>
+                    </div>
+                    <p>Step-by-step guides on reporting online harassment and protecting your accounts.</p>
+                    <div class="btn-row">
+                        <a href="https://cyberbullying.org/resources" target="_blank" rel="noopener" class="btn-secondary">Safety Guides</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. Veterans -->
+            <section class="section-card" data-category="veterans">
+                <div class="section-top">
+                    <h2>Veterans &amp; Military Support</h2>
+                    <span class="tag-badge">24/7 Dedicated</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Veterans Crisis Line</strong>
+                        <button type="button" class="copy-btn" data-copy="838255">Copy 838255</button>
+                    </div>
+                    <p>Free, confidential 24/7 support for Veterans, service members, National Guard, Reserve, and their families.</p>
+                    <div class="btn-row">
+                        <a href="tel:988" class="btn-primary">Dial 988 then Press 1</a>
+                        <a href="sms:838255" class="btn-primary">Text 838255</a>
+                        <a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener" class="btn-secondary">Confidential Chat</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11. Professional Therapy -->
+            <section class="section-card" data-category="therapy">
+                <div class="section-top">
+                    <h2>Find Professional Therapy</h2>
+                    <span class="tag-badge">Directories</span>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Psychology Today Therapist Directory</strong>
+                    </div>
+                    <p>Search licensed therapists, psychiatrists, and support groups near you by insurance and specialty.</p>
+                    <div class="btn-row">
+                        <a href="https://www.psychologytoday.com" target="_blank" rel="noopener" class="btn-secondary">Search Directory</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>Open Path Collective (Sliding-Scale Care)</strong>
+                    </div>
+                    <p>Nonprofit network offering in-person and online therapy sessions ($40–$70) for individuals without adequate insurance.</p>
+                    <div class="btn-row">
+                        <a href="https://openpathcollective.org" target="_blank" rel="noopener" class="btn-secondary">Browse Affordable Care</a>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-title-row">
+                        <strong>BetterHelp &amp; Zocdoc</strong>
+                    </div>
+                    <p>Connect with online counselors or book in-person mental health appointments.</p>
+                    <div class="btn-row">
+                        <a href="https://www.betterhelp.com" target="_blank" rel="noopener" class="btn-secondary">BetterHelp</a>
+                        <a href="https://www.zocdoc.com" target="_blank" rel="noopener" class="btn-secondary">Zocdoc</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Full-Width Friend Support & Privacy FAQ -->
+        <section class="section-card full-span" aria-label="Supporting a friend">
+            <div class="section-top">
+                <h2>How to Support a Friend Who Is Struggling</h2>
+                <span class="tag-badge">Peer Guide</span>
+            </div>
+            <div class="resource-item">
+                <strong>1. Lead with Presence, Not Pressure</strong>
+                <p>You don't need all the answers. Try saying: <em>"I care about you and I'm right here. We don't have to fix everything tonight—do you want me to just listen, or should we text a helpline together?"</em></p>
+            </div>
+            <div class="resource-item">
+                <strong>2. Reach Out Side-by-Side</strong>
+                <p>Tap any <strong>Copy</strong> button above to paste a helpline straight into a message to your friend, or sit with them while they text <strong>741741</strong> or dial <strong>988</strong>.</p>
+            </div>
+        </section>
+
+        <section class="section-card full-span" aria-label="Frequently Asked Questions">
+            <div class="section-top">
+                <h2>Privacy, Safety &amp; What to Expect</h2>
+                <span class="tag-badge">FAQ</span>
+            </div>
+            <details open>
+                <summary>Are these hotlines really free and anonymous?</summary>
+                <p>Yes. Every resource listed on HelpHub Aurora is 100% free, and you never have to share your real name, address, or insurance information.</p>
+            </details>
+            <details>
+                <summary>How does the Quick Exit button protect my privacy?</summary>
+                <p>Clicking <strong>Quick Exit ✕</strong> (or pressing the <strong>Escape</strong> key twice) immediately replaces this page in your browser tab with Google so hitting the Back button will not reopen HelpHub. To remove it from your full history log, press <strong>Ctrl + Shift + Delete</strong> (Windows) or <strong>Cmd + Y</strong> (Mac).</p>
+            </details>
+            <details>
+                <summary>What happens when I text 988 or 741741?</summary>
+                <p>Within moments, a trained crisis counselor replies via text. You can type at your own pace, share only what you feel comfortable sharing, and end the conversation whenever you wish.</p>
+            </details>
+        </section>
+
+    </main>
+
+    <footer>
+        HelpHub Aurora Sanctuary &bull; <a href="#top">Back to Top ↑</a><br>
+        If you are in immediate physical danger, please call 911 or go to the nearest emergency room.
+    </footer>
+
+    <script>
+        // 1. Theme Persistence (Light / Dark Mode)
+        const themeToggle = document.getElementById('themeToggle');
+        const rootEl = document.documentElement;
+        const savedTheme = localStorage.getItem('helphub-aurora-theme');
+
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            rootEl.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '☀️ Light Mode';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = rootEl.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                rootEl.removeAttribute('data-theme');
+                localStorage.setItem('helphub-aurora-theme', 'light');
+                themeToggle.textContent = '🌙 Dark Mode';
+            } else {
+                rootEl.setAttribute('data-theme', 'dark');
+                localStorage.setItem('helphub-aurora-theme', 'dark');
+                themeToggle.textContent = '☀️ Light Mode';
+            }
+        });
+
+        // 2. True History-Replacing Quick Exit + Double-Escape Shortcut
+        function triggerQuickExit() {
+            window.location.replace('https://www.google.com');
+        }
+
+        document.getElementById('quickExitBtn').addEventListener('click', triggerQuickExit);
+
+        let lastEscTime = 0;
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const now = Date.now();
+                if (now - lastEscTime < 800) {
+                    triggerQuickExit();
+                }
+                lastEscTime = now;
+            }
+        });
+
+        // 3. Live Search & Category Filtering
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+        const filterPills = document.querySelectorAll('.filter-pill');
+        const cards = document.querySelectorAll('#resourceGrid .section-card');
+        const noResultsBox = document.getElementById('noResultsBox');
+        let activeCategory = 'all';
+
+        function filterDirectory() {
+            const query = searchInput.value.trim().toLowerCase();
+            let visibleCards = 0;
+
+            cards.forEach((card) => {
+                const categoryMatch = activeCategory === 'all' || card.dataset.category === activeCategory;
+                const items = card.querySelectorAll('.resource-item');
+                let visibleItemsInCard = 0;
+
+                items.forEach((item) => {
+                    const textMatch = !query || item.textContent.toLowerCase().includes(query) || card.querySelector('h2').textContent.toLowerCase().includes(query);
+                    if (categoryMatch && textMatch) {
+                        item.classList.remove('hidden');
+                        visibleItemsInCard++;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                if (visibleItemsInCard > 0) {
+                    card.classList.remove('hidden');
+                    visibleCards++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            noResultsBox.style.display = visibleCards === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', filterDirectory);
+
+        filterPills.forEach((pill) => {
+            pill.addEventListener('click', () => {
+                filterPills.forEach((p) => p.classList.remove('active'));
+                pill.classList.add('active');
+                activeCategory = pill.dataset.filter;
+                filterDirectory();
+            });
+        });
+
+        clearSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            activeCategory = 'all';
+            filterPills.forEach((p) => p.classList.remove('active'));
+            filterPills[0].classList.add('active');
+            filterDirectory();
+        });
+
+        // 4. One-Tap Copy Number Badges
+        document.querySelectorAll('.copy-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const numberToCopy = btn.dataset.copy;
+                navigator.clipboard.writeText(numberToCopy).then(() => {
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Copied ✓';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.classList.remove('copied');
+                    }, 1800);
+                });
+            });
+        });
+
+        // 5. Interactive 4-7-8 Breathing Pacer
+        const pacerRing = document.getElementById('pacerRing');
+        const pacerInstruction = document.getElementById('pacerInstruction');
+        const pacerToggleBtn = document.getElementById('pacerToggleBtn');
+        let pacerRunning = false;
+        let pacerTimers = [];
+
+        function clearPacerTimers() {
+            pacerTimers.forEach(clearTimeout);
+            pacerTimers = [];
+        }
+
+        function runBreathingCycle() {
+            if (!pacerRunning) return;
+
+            // Inhale 4s
+            pacerRing.className = 'pacer-ring inhale';
+            pacerRing.textContent = 'Inhale (4s)';
+            pacerInstruction.textContent = 'Breathe in slowly and deeply through your nose...';
+
+            // Hold 7s
+            pacerTimers.push(setTimeout(() => {
+                if (!pacerRunning) return;
+                pacerRing.className = 'pacer-ring hold';
+                pacerRing.textContent = 'Hold (7s)';
+                pacerInstruction.textContent = 'Hold gently without straining...';
+            }, 4000));
+
+            // Exhale 8s
+            pacerTimers.push(setTimeout(() => {
+                if (!pacerRunning) return;
+                pacerRing.className = 'pacer-ring exhale';
+                pacerRing.textContent = 'Exhale (8s)';
+                pacerInstruction.textContent = 'Release slowly through your mouth...';
+            }, 11000));
+
+            // Loop after 19s total
+            pacerTimers.push(setTimeout(() => {
+                if (pacerRunning) runBreathingCycle();
+            }, 19000));
+        }
+
+        pacerToggleBtn.addEventListener('click', () => {
+            pacerRunning = !pacerRunning;
+            if (pacerRunning) {
+                pacerToggleBtn.textContent = 'Stop Breathing Guide';
+                runBreathingCycle();
+            } else {
+                clearPacerTimers();
+                pacerRing.className = 'pacer-ring';
+                pacerRing.textContent = 'Ready';
+                pacerInstruction.textContent = 'Tap below to start a gentle 4s inhale, 7s hold, 8s exhale cycle.';
+                pacerToggleBtn.textContent = 'Start Breathing Guide';
+            }
+        });
+    </script>
+
+</body>
+</html>
